@@ -20,9 +20,11 @@ int _printf(const char *format, ...)
 				fmt(format + i)(list);
 				continue;
 			}
+
 		}
 		write(1, (format + i), 1);
 		printed_chars++;
 	}
+	va_end(list);
 	return (printed_chars);
 }
