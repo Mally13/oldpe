@@ -6,7 +6,7 @@
  */
 int _printf(const char *format, ...)
 {
-	int i, printed_chars;
+	int i, printed_chars, unknown_len;
 	va_list list;
 
 	va_start(list, format);
@@ -17,8 +17,15 @@ int _printf(const char *format, ...)
 			i++;
 			if (*(format + i) != '%')
 			{
-				fmt(format + i)(list);
-				continue;
+				unknown_len = fmt(format + i)(list);
+				if (unknown_len != (-1) )
+				{
+					printed_chars += unknown_len;
+					continue;
+				}
+				else
+					return (-1);
+					
 			}
 
 		}

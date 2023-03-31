@@ -4,9 +4,9 @@
  * @symbol: symbol found
  * Return: function pointer to function that matches symbol
  */
-void (*fmt(const char *symbol))(va_list list)
+int (*fmt(const char *symbol))(va_list list)
 {
-	fmt_t func[] = {
+	fmt_t converters[] = {
 		{"c", print_char},
 		{"s",  print_str}
 	};
@@ -14,9 +14,8 @@ void (*fmt(const char *symbol))(va_list list)
 
 	for (i = 0; i < 2; i++)
 	{
-		if (*symbol == *(func[i].letter))
-			return (func[i].f);
+		if (*symbol == *(converters[i].specifier))
+			return (converters[i].func);
 	}
-	write(2, "conversion specifier lacks type at end of format", 48);
-	exit(1);
+	return (NULL); 
 }

@@ -1,16 +1,17 @@
 #include "main.h"
 
 /**
- * print_s - Prints a string.
+ * print_str - Prints a string.
  * @list: A va_list pointing to the string to be printed.
  */
-void print_str(va_list list)
+int print_str(va_list list)
 {
 	char *str;
-	int i;
+	int i = 0;
 
 	str = va_arg(list, char *);
 
 	for (i = 0; *(str + i); i++)
 		write(1, (str + i), 1);
+	return (i);
 }

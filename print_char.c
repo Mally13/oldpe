@@ -1,14 +1,13 @@
 #include "main.h"
 /**
  * print_char - prints a character
- * @specifier: conversion specifier matched
- * Return: 0
+ * @list: A va_list pointing to the character to print
  */
-void print_char(va_list list)
+int print_char(va_list list)
 {
 	char c, *c_pointer;
 
 	c = va_arg(list, int);
 	c_pointer = &c;
-	write(1, c_pointer, 1);
+	return (write(1, c_pointer, 1));
 }
